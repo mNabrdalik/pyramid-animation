@@ -1,0 +1,314 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+:root {
+    --lightColor: #ffd5cd;
+    --mediumColor: #efbbcf;
+    --darkColor:#c3aed6;
+    --darkerColor:#8675a9;
+    --almostWhite: #f2f2f2;
+    --sandColor: #dad4c7;
+}
+
+body {
+    background-color: #444;
+    font-size: 16px;
+    font-family: 'Oxygen', sans-serif;
+    color: whitesmoke;
+}
+
+.paint {
+    display: inline-block;
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:300px;
+    height:500px;
+    transform:translate(-50%,-50%);
+    overflow: hidden;
+    box-shadow: 0 0 25px black;
+}
+
+.sky {
+    position:relative ;
+    width:100%;
+    height:500px;
+    background-color: var(--lightColor);
+    z-index:-5;
+    animation: dayNight 12s infinite;
+}
+
+.sun {
+    position:absolute;
+    left:50px;
+    top:75px;
+    width:80px;
+    height:80px;
+    background-color:var(--lightColor);
+    border-radius:50%;
+    box-shadow:0px 0px 20px var(--mediumColor);
+    z-index:0;
+    animation: sunMove 12s linear infinite;
+}
+
+/*CLOUDS*/
+.cloud {
+    position:absolute;
+    left:-250px;
+    top:100px;
+    background-color: var(--almostWhite);
+    width:90px;
+    height:50px;
+    border-top-left-radius:50%;
+    border-top-right-radius:50%;
+    opacity:0.5;
+    transform:scale(0.9);
+    animation: cloudMove1 10s linear 1s infinite;
+}
+
+.cloud::before{
+    content:'';
+    position:absolute;
+    top:20px;
+    right:75px;
+    width:40px;
+    height:30px;
+    border-top-left-radius:50%;
+    border-top-right-radius:50%;
+    border-bottom-left-radius:50%;
+    background-color:var(--almostWhite);
+}
+
+.cloud::after{
+    content:'';
+    position:absolute;
+    top:25px;
+    left:75px;
+    width:50px;
+    height:25px;
+    border-top-left-radius:50%;
+    border-top-right-radius:50%;
+    border-bottom-right-radius:50%;
+    background-color:var(--almostWhite);
+}
+
+.cloud2 {
+    top:55px;
+    left:-130px;
+    transform:scale(0.6);
+    animation: cloudMove1 8s linear infinite;
+}
+
+.cloud3 {
+    top: 10px;
+    left: -120px;
+    transform: scale(0.8);
+    animation: cloudMove1 13s linear 2s infinite;
+
+}
+
+/*PYRAMID*/
+.pyramid{
+    position:absolute;
+    bottom:23px;
+    left:50%;
+    width:0px;
+    height:0px;
+    transform:translateX(-50%);
+    border-left:110px solid transparent;
+    border-right:110px solid transparent;
+    border-bottom:170px solid var(--darkColor);
+    z-index:2;
+    animation: pyramidColor 12s ease-in infinite;
+    
+}
+
+.pyrSide{
+    position:absolute;
+    left: 150px;
+    bottom:23px;
+    width:0px;
+    height:0px;
+    border-bottom:170px solid var(--darkerColor);
+    border-right:130px solid transparent;
+    z-index:1;
+    animation: pyramidSide 12s ease-in infinite;
+}
+
+/*SAND*/
+.sand-wave {
+    position:relative;
+    bottom:90px;
+    left:0px;
+    fill:var(--lightColor);
+    z-index:3;
+    animation: waveColor 12s linear infinite;
+}
+
+.sand {
+    position:relative;
+    width:100%;
+    bottom:100px;
+    height:30px;
+    background-color: var(--lightColor);
+    z-index:3;
+    animation: sandColor 12s linear infinite;
+}
+
+/*FOOTER*/
+.caption{
+    position:absolute;
+    bottom: 0;
+    margin: 0;
+    left:50%;
+    width:320px;
+    height:20px;
+    transform:translateX(-50%);
+    text-align: center;
+}
+
+.caption p {
+    letter-spacing: 2px;
+}
+
+/*ANIMATION*/
+@keyframes sunMove {
+    0% {
+        top: 800px;
+        box-shadow: none;
+    }
+    25% {
+        top: 30px;
+        box-shadow: none;
+    }
+    40% {
+        top: 30px;
+        box-shadow: none;
+    }
+    50% {
+        top: 30px;
+    }
+    60% {
+        top: 30px;
+        
+    }
+    75% {
+        top: 30px;
+        background-color: #f2f2f2c9;
+        box-shadow: 5px 5px 3px #444;
+    }
+    100% {
+        top: 800px;
+        background-color: var(--almostWhite);
+    }
+}
+
+@keyframes cloudMove1 {
+    0% {
+        left: -100px;
+    }
+
+    100% {
+        left: 400px;
+    }
+    }
+
+@keyframes cloudMove2 {
+    0% {
+        left: -300px;
+    }
+    
+    100% {
+        left: 400px;
+    }
+}    
+ 
+@keyframes dayNight {
+    0% {
+        background-color: var(--darkColor);
+    }
+    20% {
+        background-color: var(--mediumColor);
+    }
+    40% {
+        background-color: var(--lightColor);
+    }
+    60% {
+        background-color: var(--darkColor);
+    }
+    80% {
+        background-color: var(--darkerColor);   
+    }
+    90% {
+        background-color: var(--darkerColor);
+    }
+    100% {
+        background-color: var(--darkColor);
+    }
+}
+
+@keyframes pyramidColor {
+    0% {
+        border-bottom:170px solid var(--darkColor);
+    }
+    40% {
+        border-bottom:170px solid var(--darkColor);
+    }
+    60% {
+        border-bottom:170px solid #888;
+    }
+    80% {
+        border-bottom:170px solid #777;
+    }
+    100% {
+        border-bottom:170px solid var(--darkColor);
+    }
+} 
+
+@keyframes pyramidSide {
+    0% {
+        border-bottom:170px solid var(--darkerColor);
+    }
+    40% {
+        border-bottom:170px solid var(--darkerColor);
+    }
+    60% {
+        border-bottom:170px solid #777;
+    }
+    80% {
+        border-bottom:170px solid #555;
+    }
+    100% {
+        border-bottom:170px solid var(--darkerColor);
+    }
+} 
+
+@keyframes sandColor {
+    0% {
+        background-color:var(--lightColor);
+    }
+    
+    90% {
+        background-color:var(--sandColor);
+    }
+    100% {
+        background-color:var(--lightColor);
+    } 
+}
+
+@keyframes waveColor {
+    0% {
+        fill:var(--lightColor);
+    }
+
+    90% {
+        fill:var(--sandColor);
+    }
+
+    100% {
+        fill:var(--lightColor);
+    } 
+}
